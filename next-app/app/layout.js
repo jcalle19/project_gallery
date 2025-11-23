@@ -1,4 +1,4 @@
-import "./globals.css";
+import "./css/globals.css";
 import { RefProvider } from './contexts/refContext.jsx';
 import { SocketProvider } from './contexts/socketContext.jsx';
 

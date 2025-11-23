@@ -1,0 +1,49 @@
+#project-box-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    position: absolute;
+    overflow-x: hidden;
+    justify-content: center;
+    gap: 20px;
+    bottom: 0px;
+    width: 100vw;
+    height: 90vh;
+}
+
+.box-outer {
+    position: relative;
+    height: 30vh;
+    min-height: 200px;
+    aspect-ratio: 12 / 9;
+    background-color: black;
+    overflow: hidden;
+}
+
+.font-config {
+    font-size: 25px;
+    font-weight: 600;
+    letter-spacing: 0px;
+}
+
+.name-plate {
+    position: absolute;;
+    top: 5px;
+    left: 5px;
+    border-radius: 0px 0px 10px 0px;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+.link-bar {
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    width: 2%;
+    height: 100%;
+    transition: width .2s;
+}
+
+.link-expanded {
+    width: 10%;
+}
