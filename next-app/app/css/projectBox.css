@@ -3,27 +3,47 @@
     flex-direction: row;
     flex-wrap: wrap;
     position: absolute;
-    overflow-x: hidden;
     justify-content: center;
-    gap: 20px;
-    bottom: 0px;
-    width: 100vw;
-    height: 90vh;
+    top: 0%;
+    right: 0%;
+    gap: 15px;
+    width: 60%;
+    height: fit-content;
+    overflow: visible;
+    border: 5px solid red;
+}
+
+#outer-parent {
+    perspective: 10000px;
+    perspective-origin: center;
+    width: fit-content;
+    height: fit-content;
 }
 
 .box-outer {
     position: relative;
-    height: 30vh;
-    min-height: 200px;
-    aspect-ratio: 12 / 9;
-    background-color: black;
-    overflow: hidden;
+    height: 25vh;
+    min-height: 175px;
+    aspect-ratio: 9 / 9;
+    background-color: transparent;
+    transition: transform .1s;
+}
+
+.box-outer, .box-outer * {
+    transform-style: preserve-3d;
+}
+
+.box-image {
+    width: 100%;
+    height: 100%;
+    background: url(https://assets.monica.im/tools-web/_next/static/media/mobile_upscale.e93d7497.webp);
+    background-size: cover;
 }
 
 .font-config {
-    font-size: 25px;
-    font-weight: 600;
-    letter-spacing: 0px;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: -1px;
 }
 
 .name-plate {
