@@ -2,5 +2,71 @@
     position: absolute;
     width: 40%;
     height: 100%; 
-    left: 0%;
+    right: 0%;
+    border-radius: 15px;
+    padding-left: 2%;
+    padding-top: 1%;
+}
+
+.text {
+    color: white;
+    font-weight: 600;
+}
+
+#project-title {
+    font-size: 40px;
+}
+
+#project-image {
+    width: 95%;
+    aspect-ratio: 2 / 1;
+    border-radius: 15px;
+    background-size: cover;
+    box-shadow: 0px 0px 10px black;
+}
+
+#techstack-parent {
+    position: relative;
+}
+
+.section-title {
+    font-size: 30px;
+    margin-bottom: 3%;
+}
+
+.section {
+    width: 95%;
+    padding-left: 4%;
+    padding-top: 2%;
+    padding-bottom: 4%;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px black;
+    margin-bottom: 2%;
+}
+
+#techstack-list {
+    position: relative;
+    display: flex;
+    width: 90%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1%;
+}
+
+#description {
+    height: fit-content;
+}
+
+#Links {
+    width: 95%;
+
+}
+.icon-container {
+    width: 12.5%;
+    min-width: 50px;
+    aspect-ratio: 1 / 1;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 1%;
 }
