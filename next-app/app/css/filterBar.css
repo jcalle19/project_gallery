@@ -1,0 +1,7 @@
+#filter-container {
+    position: absolute;
+    left: 4%;
+    width: 5%; 
+    min-width: 50px;
+    height: 100%;
+}
