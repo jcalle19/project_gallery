@@ -4,9 +4,11 @@ import '../css/filterBar.css'
 
 const FilterBar = () => {
   return (
-    <div id='filter-container' style={{backgroundColor: 'var(--slate)', scrollbarColor: 'var(--slate-light) transparent'}}>
-
-    </div>
+    <div id='filter-container' 
+         style={{
+            backgroundColor: 'var(--slate)', 
+            scrollbarColor: 'var(--slate-light) transparent'
+        }}></div>
   )
 }
 
