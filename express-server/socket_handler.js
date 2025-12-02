@@ -2,6 +2,34 @@ import { util } from './util_functions.js';
 
 export const socket_functions = (io) => {
     io.on('connection', (socket) => {
-        util.connection();
+        util.connection(io, socket);
+
+        socket.on('add-tech-icon', util.safe((key, url) => {
+            util.addTechIcon(key, url);
+        }));
+
+        socket.on('remove-tech-icon', util.safe((key) => {
+            util.removeTechIcon(key);
+        }));
+
+        socket.on('add-project-image', util.safe((key, url) => {
+            util.addProjectImage(key, url);
+        }));
+
+        socket.on('remove-project-image', util.safe((key) => {
+            util.removeProjectImage(key);
+        }));
+
+        socket.on('add-project', util.safe((key, projectInfo) => {
+            util.addProject(key, projectInfo);
+        }));
+
+        socket.on('remove-project', util.safe((key)=>{
+            util.removeProject(key);
+        }))
+
+        socket.on('request-content', util.safe(() => {
+            util.sendRoomInfo(io, socket);
+        }));
     });
 }

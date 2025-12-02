@@ -6,13 +6,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <RefProvider>
-        <SocketProvider>
-          <StateProvider>
+        <StateProvider>
+          <SocketProvider>
             <body>
               {children}
             </body>
-          </StateProvider>
-        </SocketProvider>
+          </SocketProvider>
+        </StateProvider>
       </RefProvider>
     </html>
   );
