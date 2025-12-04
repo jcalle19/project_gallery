@@ -11,13 +11,7 @@ export const RefProvider = ({children}) => {
     const defaultProjectDisplay = useRef({name: 'Example Project2', primary: 'var(--pastel-blue)', techStack: [], image: 'https://img.freepik.com/free-vector/flat-design-geometric-shapes-background_23-2148366514.jpg', link: 'exLink', desc: ''});
     const projectMapRef = useRef(new Map([
         ['example-project-1', {name: 'Example Project1', primary: 'var(--pastel-blue)', techStack: 
-                ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6bebC_d4eWwJ-x9ntqDuT94TvOgumSBVWHg&s',
-                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6bebC_d4eWwJ-x9ntqDuT94TvOgumSBVWHg&s',
-                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6bebC_d4eWwJ-x9ntqDuT94TvOgumSBVWHg&s',
-                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6bebC_d4eWwJ-x9ntqDuT94TvOgumSBVWHg&s',
-                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6bebC_d4eWwJ-x9ntqDuT94TvOgumSBVWHg&s',
-                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6bebC_d4eWwJ-x9ntqDuT94TvOgumSBVWHg&s',
-                ], image: 'https://static.vecteezy.com/system/resources/previews/002/073/179/non_2x/colorful-abstract-shape-geometric-in-dark-background-free-vector.jpg', link: 'exLink', desc: 'blah blah blah blah blah'}],
+                ['next_icon','express_icon','socket_icon','html_icon','css_icon'], image: 'https://static.vecteezy.com/system/resources/previews/002/073/179/non_2x/colorful-abstract-shape-geometric-in-dark-background-free-vector.jpg', link: 'exLink', desc: 'blah blah blah blah blah'}],
         ['example-project-2', {name: 'Example Project2', primary: 'var(--pastel-blue)', techStack: [], image: 'https://img.freepik.com/free-vector/flat-design-geometric-shapes-background_23-2148366514.jpg', link: 'exLink', desc: ''}],
         ['example-project-3', {name: 'Example Project3', primary: 'var(--pastel-blue)', techStack: [], image: 'https://i.fbcd.co/products/resized/resized-750-500/e29d5583f90410ee3072688e086ce32540170d92137ebe3e335ef9857572b31c.jpg', link: 'exLink', desc: ''}],
         ['example-project-4', {name: 'Example Project4', primary: 'var(--pastel-blue)', techStack: [], image: 'https://wallpapers.com/images/hd/shapes-background-dmcw3546ei054xxt.jpg', link: 'exLink', desc: ''}],

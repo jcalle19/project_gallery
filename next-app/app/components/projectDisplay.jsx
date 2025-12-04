@@ -12,7 +12,7 @@ const font = Work_Sans({
     });
 
 const ProjectDisplay = () => {
-    const { currProject } = useStateContext();
+    const { currProject, techIcons } = useStateContext();
     return (
         <div className={`display-container ${font.className}`} style={{backgroundColor: 'var(--charcoal)'}}>
             { currProject === null ? '' :
@@ -24,9 +24,9 @@ const ProjectDisplay = () => {
                         <div className='section-title text'>Used Technologies</div>
                         <div id='techstack-list'>
                             {
-                                currProject.techStack.map((url, index)=>{
+                                currProject.techStack.map((key, index)=>{
                                     return <div key={index} className='icon-container'>
-                                        <TechStackIcon src={url} sizePercent={'100'}/>
+                                        <TechStackIcon src={techIcons.get(key)} sizePercent={'90'}/>
                                     </div>
                                 })
                             }

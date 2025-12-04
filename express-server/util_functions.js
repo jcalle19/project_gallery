@@ -30,10 +30,12 @@ const connection = (io, socket) => {
 
 const addTechIcon = (key, url) => {
     techImages.set(key, url);
+    console.log('adding icon', key);
 }
 
 const removeTechIcon = (key) => {
     if (techImages.has(key)) techImages.delete(key);
+    console.log('removing icon', key);
 }
 
 const addProjectImage = (key, url) => {
