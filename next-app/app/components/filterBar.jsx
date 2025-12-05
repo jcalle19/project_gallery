@@ -8,11 +8,16 @@ import '../css/globals.css'
 import '../css/filterBar.css'
 
 const FilterBar = () => {
-  const { adminMode, techIcons, techWindowOpen, 
-    toggleTechWindow, filterList, updateFilterList } = useStateContext();
+  const { adminMode, techIcons, techWindowOpen, toggleTechWindow, 
+    projectWindowOpen, toggleProjectWindow,filterList, updateFilterList } = useStateContext();
 
-  const handleToggleMenu = () => {
+  const handleToggleTechMenu = () => {
     toggleTechWindow(!techWindowOpen);
+  }
+
+  const handleToggleProjectMenu = () => {
+    toggleProjectWindow(!projectWindowOpen);
+    console.log('clicking');
   }
 
   const handleIconClick = (key) => {
@@ -41,9 +46,15 @@ const FilterBar = () => {
                 <TechStackIcon src={entry[1]} sizePercent={'90'}/>
               </div>
             })}
+            <div className='icon' onClick={handleToggleTechMenu}>
+              {techWindowOpen ? 
+                <Icon src={'/minimize.svg'} width={'70%'} height={'70%'}/> : 
+                <Icon src={'/add.svg'} width={'70%'} height={'70%'}/>
+              }
+            </div>
           </div>
-          <div id='add-tech-button' onClick={handleToggleMenu}>
-            {techWindowOpen ? 
+          <div className='window-button' onClick={handleToggleProjectMenu}>
+            {projectWindowOpen ? 
               <Icon src={'/minimize.svg'} width={'70%'} height={'70%'}/> : 
               <Icon src={'/add.svg'} width={'70%'} height={'70%'}/>
             }

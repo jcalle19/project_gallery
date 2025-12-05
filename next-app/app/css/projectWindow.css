@@ -1,0 +1,61 @@
+#window-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: max(50vh, 300px);
+    aspect-ratio: 1 / 1;
+    box-shadow: 0px 0px 10px black;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+#tech-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2%;
+    max-height: 200px;
+    background-color: var(--slate);
+    overflow-y: scroll;
+    padding-left: 10px;
+    padding-top: 10px;
+    border-radius: 15px;
+    scrollbar-color: var(--slate-light) transparent;
+    box-shadow: 0px 0px 10px black;
+}
+
+.tech-icon {
+    background-color: var(--charcoal);
+    border-radius: 5px;
+    transition: background-color .2s;
+}
+
+.tech-icon:hover {
+    background-color: var(--mint-light);
+}
+
+.tech-icon:active {
+    background-color: var(--slate);
+}
+
+.selected {
+    background-color: var(--mint-light);
+    box-shadow: 0px 0px 10px white;
+}
+
+input, textarea {
+    background-color: white;
+    margin-left: 5px;
+    border-radius: 5px;
+    color: black;
+}
+
+#description-area {
+    height: 90%;
+    width: 75%;
+}
+
+label {
+    color: white;
+}

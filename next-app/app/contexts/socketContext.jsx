@@ -23,6 +23,7 @@ export const SocketProvider = ({children}) => {
         });
 
         socketRef.current.on('receive-content', (techIcons, projectIcons, projectList) => {
+            console.log('project list: ', projectList);
             updateTechIcons(new Map(techIcons));
             updateProjectIcons(new Map(projectIcons));
             updateProjectList(new Map(projectList));

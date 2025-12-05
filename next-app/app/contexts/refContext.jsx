@@ -8,7 +8,7 @@ export const useRefContext = () => useContext(refContext);
 
 export const RefProvider = ({children}) => {
     const socketRef = useRef(null);
-    const defaultProjectDisplay = useRef({name: 'Example Project2', primary: 'var(--pastel-blue)', techStack: [], image: 'https://img.freepik.com/free-vector/flat-design-geometric-shapes-background_23-2148366514.jpg', link: 'exLink', desc: ''});
+    const defaultProjectDisplay = useRef({name: 'Example Project2', primary: 'var(--pastel-blue)', techStack: [], image: 'https://img.freepik.com/free-vector/flat-design-geometric-shapes-background_23-2148366514.jpg', github: 'github', link: 'exLink', desc: ''});
     const projectMapRef = useRef(new Map([
         ['example-project-1', {name: 'Example Project1', primary: 'var(--pastel-blue)', techStack: 
                 ['next_icon','express_icon','socket_icon','html_icon','css_icon'], image: 'https://static.vecteezy.com/system/resources/previews/002/073/179/non_2x/colorful-abstract-shape-geometric-in-dark-background-free-vector.jpg', link: 'exLink', desc: 'blah blah blah blah blah'}],

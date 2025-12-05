@@ -9,11 +9,12 @@ import '../css/globals.css'
 const ProjectBoxContainer = () => {
     //Will be obtained from server
     const { projectMapRef } = useRefContext();
-    const { filterList } = useStateContext();
+    const { filterList, projectList } = useStateContext();
     
     const checkFilter = (boxInfo) => {
         if (filterList.size === 0) return true;
-        let ret = boxInfo.techStack.some(item => filterList.has(item));
+        //let ret = boxInfo.techStack.every(item => filterList.has(item));
+        const ret = [...filterList].every(value => boxInfo.techStack.includes(value));
         return ret;
     }
 
@@ -21,7 +22,7 @@ const ProjectBoxContainer = () => {
         <div id='project-box-container-parent' style={{backgroundColor: 'var(--charcoal)'}}>
             <div id='project-box-container' style={{backgroundColor: 'var(--slate)', scrollbarColor: 'var(--slate-light) transparent'}}>
                 {
-                    [...projectMapRef.current.values()].map((box, index)=>{
+                    [...projectList.values()].map((box, index)=>{ 
                         return (checkFilter(box) ? <ProjectBox key={index} boxInfo={box}/> : '');
                     })
                 }

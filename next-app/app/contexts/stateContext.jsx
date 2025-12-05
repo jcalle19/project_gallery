@@ -12,6 +12,7 @@ export const StateProvider = ({children}) => {
     const [projectIcons, updateProjectIcons] = useState(new Map());
     const [projectList, updateProjectList] = useState(new Map());
     const [techWindowOpen, toggleTechWindow] = useState(false);
+    const [projectWindowOpen, toggleProjectWindow] = useState(false);
     const [filterList, updateFilterList] = useState(new Set());
     const [adminMode, setAdminMode] = useState(true);
 
@@ -21,9 +22,10 @@ export const StateProvider = ({children}) => {
         projectIcons, updateProjectIcons,
         projectList, updateProjectList,
         techWindowOpen, toggleTechWindow,
+        projectWindowOpen, toggleProjectWindow,
         filterList, updateFilterList,
         adminMode, setAdminMode
-    }), [currProject, techIcons, projectIcons, projectList, techWindowOpen, filterList, adminMode]);
+    }), [currProject, techIcons, projectIcons, projectList, techWindowOpen, projectWindowOpen, filterList, adminMode]);
     
     return <stateContext.Provider value={value}>
         {children}
