@@ -7,6 +7,8 @@
     border-radius: 15px;
     padding-left: 2%;
     padding-top: 1%;
+    overflow-y: scroll;
+    scrollbar-color: var(--slate-light) transparent;
 }
 
 .text {
@@ -14,8 +16,31 @@
     font-weight: 600;
 }
 
-#project-title {
+#project-title, #default-title {
     font-size: 40px;
+}
+
+#close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    height: 75%;
+    max-height: 50px;
+    aspect-ratio: 1 / 1;
+    border-radius: 5px;
+    background-color: transparent;
+    transition: background-color .2s;
+    cursor: pointer;
+}
+
+#close-button Icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#close-button:hover {
+    background-color: var(--mint-light);
 }
 
 #project-image {
@@ -42,6 +67,7 @@
     padding-bottom: 4%;
     border-radius: 15px;
     box-shadow: 0px 0px 10px black;
+    background-color: var(--slate);
     margin-bottom: 2%;
 }
 
@@ -77,4 +103,19 @@
 .icon-container:hover {
     background-color: var(--mint-light);
     box-shadow: 0px 0px 10px white;
+}
+
+#image {
+    height: 25%;
+    background-image: url(/smile.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: black;
+}
+
+#about-msg {
+    overflow-y: scroll;
+    scrollbar-color: var(--slate-light) transparent;
+    max-height: 250px;
 }

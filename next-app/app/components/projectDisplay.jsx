@@ -3,6 +3,7 @@ import React from 'react'
 import { useStateContext } from '../contexts/stateContext'
 import { Work_Sans } from 'next/font/google'
 import TechStackIcon from './techStackIcon.jsx'
+import Icon from './icon.jsx'
 import '../css/globals.css'
 import '../css/projectDisplay.css'
 
@@ -12,12 +13,20 @@ const font = Work_Sans({
     });
 
 const ProjectDisplay = () => {
-    const { currProject, techIcons } = useStateContext();
+    const { currProject,  techIcons } = useStateContext();
+    
+    const handleClose = () => {
+
+    }
+
     return (
         <div className={`display-container ${font.className}`} style={{backgroundColor: 'var(--charcoal)'}}>
             { currProject === null ? '' :
                 <div>
-                    <div id='project-title' className='text'>{currProject.name}</div>
+                    <div id='close-button' className='col-start-2' onClick={handleClose}>
+                        <Icon src='/close-icon.svg' width={'100%'} height={'100%'}/>
+                    </div>
+                    <div id='project-title' className='text col-start-1'>{currProject.name}</div>
                     <div id='project-image' style={{backgroundImage:`url(${currProject.image})`, marginBottom: '2%'}}></div>
                     <div id='techstack-parent' className='section' 
                         style={{ backgroundColor: 'var(--slate)'}}>

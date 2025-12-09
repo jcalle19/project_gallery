@@ -11,7 +11,7 @@ export const useSocketContext = () => useContext(socketContext);
 
 export const SocketProvider = ({children}) => {
     const { socketRef } = useRefContext();
-    const { updateProjectList, updateTechIcons, updateProjectIcons} = useStateContext();
+    const { updateDefaultPanel, setCurrProject, updateProjectList, updateTechIcons, updateProjectIcons} = useStateContext();
     const [socketReady, setSocketReady] = useState(false);
 
     useEffect(() => {
@@ -22,8 +22,9 @@ export const SocketProvider = ({children}) => {
            socketRef.current.emit('request-content');
         });
 
-        socketRef.current.on('receive-content', (techIcons, projectIcons, projectList) => {
+        socketRef.current.on('receive-content', (defaultProject, techIcons, projectIcons, projectList) => {
             console.log('project list: ', projectList);
+            updateDefaultPanel(defaultProject);
             updateTechIcons(new Map(techIcons));
             updateProjectIcons(new Map(projectIcons));
             updateProjectList(new Map(projectList));

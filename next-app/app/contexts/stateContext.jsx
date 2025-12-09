@@ -7,6 +7,7 @@ const stateContext = createContext();
 export const useStateContext = () => useContext(stateContext);
 
 export const StateProvider = ({children}) => {
+    const [defaultProjectPanel, updateDefaultPanel] = useState(null);
     const [currProject, setCurrProject] = useState(null);
     const [techIcons, updateTechIcons] = useState(new Map());
     const [projectIcons, updateProjectIcons] = useState(new Map());
@@ -17,6 +18,7 @@ export const StateProvider = ({children}) => {
     const [adminMode, setAdminMode] = useState(true);
 
     const value=useMemo(()=>({
+        defaultProjectPanel, updateDefaultPanel,
         currProject, setCurrProject,
         techIcons, updateTechIcons,
         projectIcons, updateProjectIcons,
@@ -25,7 +27,7 @@ export const StateProvider = ({children}) => {
         projectWindowOpen, toggleProjectWindow,
         filterList, updateFilterList,
         adminMode, setAdminMode
-    }), [currProject, techIcons, projectIcons, projectList, techWindowOpen, projectWindowOpen, filterList, adminMode]);
+    }), [defaultProjectPanel, currProject, techIcons, projectIcons, projectList, techWindowOpen, projectWindowOpen, filterList, adminMode]);
     
     return <stateContext.Provider value={value}>
         {children}

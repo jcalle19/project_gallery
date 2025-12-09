@@ -1,5 +1,5 @@
 'use client'
-import {useState} from 'react'
+import {useState, useEffect, useRef} from 'react'
 import TechStackIcon from './techStackIcon.jsx'
 import '../css/projectWindow.css'
 import '../css/globals.css'
@@ -13,8 +13,9 @@ const font = Work_Sans({
     });
 
 const AddProjectWindow = () => {
-    const { projectWindowOpen, techIcons } = useStateContext();
+    const { projectWindowOpen, techIcons, currProject, setCurrProject } = useStateContext();
     const { socketRef } = useRefContext();
+    const tempProject = useRef(null);
     const [nameText, setName] = useState('');
     const [colorText, setColor] = useState('');
     const [imageText, setImage] = useState('');
@@ -22,6 +23,13 @@ const AddProjectWindow = () => {
     const [linkText, setLink] = useState('');
     const [descriptionText, setDescription] = useState('');
     const [techSet, updateTechList] = useState(new Set());
+
+    useEffect(() => {
+        if (!projectWindowOpen && tempProject.current != null) {
+            setCurrProject(tempProject.current);
+            tempProject.current = null;
+        }
+    },[projectWindowOpen]);
 
     const handleIconClick = (key) => {
         updateTechList(prev => {
@@ -41,29 +49,48 @@ const AddProjectWindow = () => {
     const handleRemove = () => {
     }
 
+    const handlePreview = () => {
+        let preview = {
+            name: nameText, 
+            primary: colorText, 
+            techStack: [...techSet], 
+            image: imageText, 
+            github: githubText, 
+            link: linkText, 
+            desc: descriptionText,
+        };
+        tempProject.current = currProject;
+        setCurrProject(preview);
+    }
+
     return (
-        <div id='window-container' className={`grid grid-rows-15 ${font.className}`} style={{
+        <div id='project-window-container' className={`grid grid-rows-14 gap-2 ${font.className}`} style={{
             display: `${projectWindowOpen ? '' : 'none'}`,
             backgroundColor: 'var(--charcoal)',
         }}>
-            <label className='row-start-1'>Project Name: 
-                <input type='text' value={nameText ?? ''} onChange={(e)=>setName(e.target.value)}/>
-            </label>
-            <label className='row-start-2'>Primary Color: 
-                <input type='text' value={colorText ?? ''} onChange={(e)=>setColor(e.target.value)}/>
-            </label>
-            <label className='row-start-3'>Image: 
-                <input type='text' value={imageText ?? ''} onChange={(e)=>setImage(e.target.value)}/>
-            </label>
-            <label className='row-start-4'>Github: 
-                <input type='text' value={githubText ?? ''} onChange={(e)=>setGithub(e.target.value)}/>
-            </label>
-            <label className='row-start-5'>Link: 
-                <input type='text' value={linkText ?? ''} onChange={(e)=>setLink(e.target.value)}/>
-            </label>
-            <div className='row-start-6 row-span-3'>
-                <label id='description-label' htmlFor='description'>Description: </label>
-                <textarea id='description-area' name='description' rows='5' type='text' value={descriptionText ?? ''} onChange={(e)=>setDescription(e.target.value)}/>
+            <div className='grid grid-cols-[1fr_3fr] row-start-1'>
+                <label className='col-start-1'>Project Name: </label> 
+                <input className='col-start-2' type='text' value={nameText ?? ''} onChange={(e)=>setName(e.target.value)}/>
+            </div>
+            <div className='grid grid-cols-[1fr_3fr] row-start-2'>
+                <label className='col-start-1'>Primary Color: </label>
+                <input className='col-start-2' type='text' value={colorText ?? ''} onChange={(e)=>setColor(e.target.value)}/>
+            </div>
+            <div className='grid grid-cols-[1fr_5fr] row-start-3'>
+                <label className='col-start-1'>Image: </label>
+                <input className='col-start-2' type='text' value={imageText ?? ''} onChange={(e)=>setImage(e.target.value)}/>
+            </div>
+            <div className='grid grid-cols-[1fr_5fr] row-start-4'>
+                <label className='col-start-1'>Github: </label> 
+                <input className='col-start-2' type='text' value={githubText ?? ''} onChange={(e)=>setGithub(e.target.value)}/>
+            </div>
+            <div className='grid grid-cols-[1fr_5fr] row-start-5'>
+                <label className='col-start-1'>Link: </label>
+                <input className='col-start-2' type='text' value={linkText ?? ''} onChange={(e)=>setLink(e.target.value)}/>
+            </div>
+            <div className='grid grid-cols-[1fr_4fr] row-start-6 row-span-3'>
+                <label className='col-start-1' id='description-label'>Description: </label>
+                <textarea className='col-start-2' id='description-area' name='description' rows='5' type='text' value={descriptionText ?? ''} onChange={(e)=>setDescription(e.target.value)}/>
             </div>
             <div id='tech-container' className='row-start-9 row-span-4'>
                 {Array.from(techIcons).map((entry, index)=>{
@@ -75,7 +102,11 @@ const AddProjectWindow = () => {
                     </div>
                 })}
             </div>
-            
+            <div className='button-container grid grid-cols-3 row-span-2'>
+                <div className='button col-start-1' style={{backgroundColor: 'var(--mint)'}}>Confirm</div>
+                <div className='button col-start-2' style={{backgroundColor: 'var(--slate-light)'}} onClick={handlePreview}>Preview</div>
+                <div className='button col-start-3' style={{backgroundColor: 'red'}}>Remove</div>
+            </div>
         </div>
     )
 }

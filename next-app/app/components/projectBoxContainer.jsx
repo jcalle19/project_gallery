@@ -13,8 +13,8 @@ const ProjectBoxContainer = () => {
     
     const checkFilter = (boxInfo) => {
         if (filterList.size === 0) return true;
-        //let ret = boxInfo.techStack.every(item => filterList.has(item));
-        const ret = [...filterList].every(value => boxInfo.techStack.includes(value));
+        let ret = boxInfo.techStack.some(item => filterList.has(item));
+        //let ret = [...filterList].every(value => boxInfo.techStack.includes(value));
         return ret;
     }
 

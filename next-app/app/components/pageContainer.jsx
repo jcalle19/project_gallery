@@ -3,6 +3,7 @@ import TitleBar from './titleBar.jsx'
 import FilterBar from './filterBar.jsx'
 import ProjectBoxContainer from './projectBoxContainer.jsx'
 import ProjectDisplay from './projectDisplay.jsx'
+import DefaultProjectDisplay from './defaultProjectDisplay.jsx'
 import AddTechWindow from './addTechWindow.jsx'
 import AddProjectWindow from './addProjectWindow.jsx'
 import { TTFLoader } from 'three/examples/jsm/Addons.js'
@@ -13,6 +14,7 @@ const PageContainer = () => {
         <TitleBar/>
         <FilterBar/>
         <ProjectDisplay/>
+        <DefaultProjectDisplay/>
         <ProjectBoxContainer/>
         <AddTechWindow/>
         <AddProjectWindow/>

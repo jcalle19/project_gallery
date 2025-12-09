@@ -17,7 +17,6 @@ const FilterBar = () => {
 
   const handleToggleProjectMenu = () => {
     toggleProjectWindow(!projectWindowOpen);
-    console.log('clicking');
   }
 
   const handleIconClick = (key) => {
