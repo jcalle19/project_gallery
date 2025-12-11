@@ -18,13 +18,13 @@ const AddTechWindow = () => {
     const [urlText, updateUrlText] = useState('');
 
     const handleAdd = () => {
-        socketRef.current.emit('add-tech-icon', keyText, urlText);
+        socketRef.current.emit('add-tech-icon', keyText, urlText, sessionStorage.getItem('admin-key'));
         updateKeyText('');
         updateUrlText('');
     }
 
     const handleRemove = () => {
-        socketRef.current.emit('remove-tech-icon', keyText);
+        socketRef.current.emit('remove-tech-icon', keyText, sessionStorage.getItem('admin-key'));
         updateKeyText('');
         updateUrlText('');
     }

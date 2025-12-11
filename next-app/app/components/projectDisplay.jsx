@@ -13,10 +13,10 @@ const font = Work_Sans({
     });
 
 const ProjectDisplay = () => {
-    const { currProject,  techIcons } = useStateContext();
+    const { currProject,  techIcons, toggleDefaultPanel } = useStateContext();
     
     const handleClose = () => {
-
+        toggleDefaultPanel(true);
     }
 
     return (
@@ -45,9 +45,16 @@ const ProjectDisplay = () => {
                         <div className='section-title text'>Project Description</div>
                         <div id='description-body' className='text'>{currProject.desc}</div>
                     </div>
-                     <div id='Links' className='section' style={{backgroundColor: 'var(--slate)'}}>
-                        <div className='section-title text'>Links</div>
-                        <div id='description-body' className='text'>{currProject.link}</div>
+                     <div id='Links' className='section grid grid-rows-2' style={{backgroundColor: 'var(--slate)'}}>
+                        <div className='section-title text row-start-1'>Links</div>
+                        <div className='row-start-2 grid grid-cols-2' style={{marginLeft: '-4.5%'}}>
+                            <div id='github' className='link-icon col-start-1'>
+                                <a href={''}><Icon src={'/github.svg'} width={'100%'} height={'100%'}/></a>
+                            </div>
+                            <div className='link-icon col-start-2'>
+                                <a href={''}><Icon src={'/link.svg'} width={'70%'} height={'70%'}/></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             }

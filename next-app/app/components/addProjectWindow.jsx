@@ -31,6 +31,19 @@ const AddProjectWindow = () => {
         }
     },[projectWindowOpen]);
 
+    const getProjectObject = () => {
+        let preview = {
+            name: nameText, 
+            primary: colorText, 
+            techStack: [...techSet], 
+            image: imageText, 
+            github: githubText, 
+            link: linkText, 
+            desc: descriptionText,
+        };
+        return preview;
+    }
+
     const handleIconClick = (key) => {
         updateTechList(prev => {
         const next = new Set(prev);
@@ -44,23 +57,16 @@ const AddProjectWindow = () => {
     }
 
     const handleAdd = () => {
+        socketRef.current.emit('add-project', nameText, getProjectObject(), sessionStorage.getItem('admin-key'));
     }
 
     const handleRemove = () => {
+        socketRef.current.emit('remove-project', nameText, sessionStorage.getItem('admin-key'));
     }
 
     const handlePreview = () => {
-        let preview = {
-            name: nameText, 
-            primary: colorText, 
-            techStack: [...techSet], 
-            image: imageText, 
-            github: githubText, 
-            link: linkText, 
-            desc: descriptionText,
-        };
         tempProject.current = currProject;
-        setCurrProject(preview);
+        setCurrProject(getProjectObject());
     }
 
     return (
@@ -103,9 +109,9 @@ const AddProjectWindow = () => {
                 })}
             </div>
             <div className='button-container grid grid-cols-3 row-span-2'>
-                <div className='button col-start-1' style={{backgroundColor: 'var(--mint)'}}>Confirm</div>
+                <div className='button col-start-1' style={{backgroundColor: 'var(--mint)'}} onClick={handleAdd}>Confirm</div>
                 <div className='button col-start-2' style={{backgroundColor: 'var(--slate-light)'}} onClick={handlePreview}>Preview</div>
-                <div className='button col-start-3' style={{backgroundColor: 'red'}}>Remove</div>
+                <div className='button col-start-3' style={{backgroundColor: 'red'}} onClick={handleRemove}>Remove</div>
             </div>
         </div>
     )

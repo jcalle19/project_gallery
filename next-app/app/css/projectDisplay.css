@@ -89,6 +89,11 @@
     width: 95%;
 
 }
+
+#default-display {
+    transition: transform .5s;
+}
+
 .icon-container {
     width: 12.5%;
     min-width: 50px;
@@ -119,3 +124,26 @@
     scrollbar-color: var(--slate-light) transparent;
     max-height: 250px;
 }
+
+.link-icon {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    width: 80%;
+    height: 90%;
+    transform: translate(-50%, -50%);
+    border-radius: 15px;
+    background-color: var(--charcoal);
+    box-shadow: 0px 0px 5px black;
+    transition: background-color .2s, box-shadow .2s;
+}
+
+.link-icon:hover {
+    background-color: var(--mint-light);
+    box-shadow: 0px 0px 5px white;
+}
+
+.translated {
+    transform: translateX(120%);
+}
+

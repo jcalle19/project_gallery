@@ -45,19 +45,23 @@ const FilterBar = () => {
                 <TechStackIcon src={entry[1]} sizePercent={'90'}/>
               </div>
             })}
-            <div className='icon' onClick={handleToggleTechMenu}>
-              {techWindowOpen ? 
+            {adminMode ? 
+              <div className='icon' onClick={handleToggleTechMenu}>
+                {techWindowOpen ? 
+                  <Icon src={'/minimize.svg'} width={'70%'} height={'70%'}/> : 
+                  <Icon src={'/add.svg'} width={'70%'} height={'70%'}/>
+                }
+              </div> : ''
+            }
+          </div>
+          {adminMode ?
+            <div className='window-button' onClick={handleToggleProjectMenu}>
+              {projectWindowOpen ? 
                 <Icon src={'/minimize.svg'} width={'70%'} height={'70%'}/> : 
                 <Icon src={'/add.svg'} width={'70%'} height={'70%'}/>
               }
-            </div>
-          </div>
-          <div className='window-button' onClick={handleToggleProjectMenu}>
-            {projectWindowOpen ? 
-              <Icon src={'/minimize.svg'} width={'70%'} height={'70%'}/> : 
-              <Icon src={'/add.svg'} width={'70%'} height={'70%'}/>
-            }
-          </div>
+            </div> : ''
+          }
         </div>
   )
 }

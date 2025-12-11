@@ -1,12 +1,15 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 const techImages = new Map([
-    ['html_icon', 'https://d3cym6gpva.ufs.sh/f/GUZU0kQvwB5afR8NZDwEpNrkVIJ2WXPeTxcDGSwmsU3H5y1B'],
-    ['css_icon', 'https://d3cym6gpva.ufs.sh/f/GUZU0kQvwB5aVnIj4JezQYAdtwHirUK6NMqZ7XL3Ghvylef1'],
-    ['next_icon', 'https://d3cym6gpva.ufs.sh/f/GUZU0kQvwB5aijh0y1Heb6hUsBN3muaXpP7y4rqWlQ5OKj98'],
-    ['tailwind_icon', 'https://d3cym6gpva.ufs.sh/f/GUZU0kQvwB5aWweBCrY08T46c9YLFPEqQwoSfezjpNXJVbGu'],
-    ['react_icon', 'https://d3cym6gpva.ufs.sh/f/GUZU0kQvwB5ai3bdnNeb6hUsBN3muaXpP7y4rqWlQ5OKj98c'],
-    ['node_icon', 'https://d3cym6gpva.ufs.sh/f/GUZU0kQvwB5aboyafrNDTSBm6I7F1wvG9aHOyV3hu4RKWYJP'],
-    ['express_icon', 'https://d3cym6gpva.ufs.sh/f/GUZU0kQvwB5aSOpMHOxMgOLPanj1Kz6TsVowCEN8dA4krhS9'],
-    ['socket_icon', 'https://d3cym6gpva.ufs.sh/f/GUZU0kQvwB5asvPcKRJa0zuSQdUJRNLcAboYGfCEipB5TseO'],
+    ['HTML', 'https://d3cym6gpva.ufs.sh/f/GUZU0kQvwB5afR8NZDwEpNrkVIJ2WXPeTxcDGSwmsU3H5y1B'],
+    ['CSS', 'https://d3cym6gpva.ufs.sh/f/GUZU0kQvwB5aVnIj4JezQYAdtwHirUK6NMqZ7XL3Ghvylef1'],
+    ['NextJS', 'https://d3cym6gpva.ufs.sh/f/GUZU0kQvwB5aijh0y1Heb6hUsBN3muaXpP7y4rqWlQ5OKj98'],
+    ['Tailwind', 'https://d3cym6gpva.ufs.sh/f/GUZU0kQvwB5aWweBCrY08T46c9YLFPEqQwoSfezjpNXJVbGu'],
+    ['React', 'https://d3cym6gpva.ufs.sh/f/GUZU0kQvwB5ai3bdnNeb6hUsBN3muaXpP7y4rqWlQ5OKj98c'],
+    ['NodeJS', 'https://d3cym6gpva.ufs.sh/f/GUZU0kQvwB5aboyafrNDTSBm6I7F1wvG9aHOyV3hu4RKWYJP'],
+    ['ExpressJS', 'https://d3cym6gpva.ufs.sh/f/GUZU0kQvwB5aSOpMHOxMgOLPanj1Kz6TsVowCEN8dA4krhS9'],
+    ['SocketIO', 'https://d3cym6gpva.ufs.sh/f/GUZU0kQvwB5aU5tyE6K6MKtCZfl1eJGy09vi8mFXg2rk35LR'],
 ]);
 
 const projectImages = new Map();
@@ -24,9 +27,10 @@ const defaultProject = {
     email: 'jallenn0622@gmail.com'
 };
 
+//holds items as key: object{name: 'project name', primary: 'css color', techStack: [], image: 'image link', github: 'github', link: 'website link', desc: ''}
 const projectList = new Map([
         ['example-project-1', {name: 'Example Project1', primary: 'var(--pastel-blue)', techStack: 
-                ['next_icon','express_icon','socket_icon','html_icon','css_icon'], image: 'https://static.vecteezy.com/system/resources/previews/002/073/179/non_2x/colorful-abstract-shape-geometric-in-dark-background-free-vector.jpg', github: 'github', link: 'exLink', desc: 'blah blah blah blah blah'}],
+                ['NextJS','ExpressJS','SocketIO','HTML','CSS'], image: 'https://static.vecteezy.com/system/resources/previews/002/073/179/non_2x/colorful-abstract-shape-geometric-in-dark-background-free-vector.jpg', github: 'github', link: 'exLink', desc: 'blah blah blah blah blah'}],
         ['example-project-2', {name: 'Example Project2', primary: 'var(--pastel-blue)', techStack: [], image: 'https://img.freepik.com/free-vector/flat-design-geometric-shapes-background_23-2148366514.jpg', github: 'github', link: 'exLink', desc: ''}],
         ['example-project-3', {name: 'Example Project3', primary: 'var(--pastel-blue)', techStack: [], image: 'https://i.fbcd.co/products/resized/resized-750-500/e29d5583f90410ee3072688e086ce32540170d92137ebe3e335ef9857572b31c.jpg', github: 'github', link: 'exLink', desc: ''}],
         ['example-project-4', {name: 'Example Project4', primary: 'var(--pastel-blue)', techStack: [], image: 'https://wallpapers.com/images/hd/shapes-background-dmcw3546ei054xxt.jpg', link: 'exLink', desc: ''}],
@@ -46,9 +50,18 @@ const safe = (handler) => {
     };
 }
 
+const verifyAuth = (key) => {
+    if (key === process.env.ADMIN_KEY) return true;
+    return false;
+}
+
 const connection = (io, socket) => {
     console.log('a user connected');
     io.to(socket.id).emit('connected', true);
+}
+
+const checkAdmin = (io, socket, key) => {
+    io.to(socket.id).emit('set-admin', verifyAuth(key));
 }
 
 const addTechIcon = (key, url) => {
@@ -82,7 +95,9 @@ const sendRoomInfo = (io, socket) => {
 }
 export const util = {
     safe,
+    verifyAuth,
     connection,
+    checkAdmin,
     addTechIcon,
     removeTechIcon,
     addProjectImage,

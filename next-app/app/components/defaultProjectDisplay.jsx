@@ -8,14 +8,14 @@ import '../css/globals.css'
 import '../css/projectDisplay.css'
 
 const DefaultProjectDisplay = () => {
-    const { defaultProjectPanel, currProject } = useStateContext();
+    const { defaultProjectPanel, defaultPanelOpen } = useStateContext();
 
-    useEffect(()=>{
-        if (currProject === null) return;
-    },[currProject]);
+    const handleCopy = () => {
+        navigator.clipboard.writeText(defaultProjectPanel?.email);
+    }
 
     return (
-        <div className='display-container text' style={{backgroundColor: 'var(--charcoal)'}}>
+        <div id='default-display' className={`display-container text ${defaultPanelOpen ? '' : 'translated'}`} style={{backgroundColor: 'var(--charcoal)'}}>
             <div id='default-title'>{defaultProjectPanel?.title}</div>
             <div id='entry-msg' className='section'>
                 <div className='section-title'>Welcome!</div>
@@ -37,14 +37,14 @@ const DefaultProjectDisplay = () => {
                     Links
                 </div>
                 <div className='grid grid-cols-3 row-start-2' style={{marginLeft: '-4%'}}>
-                    <div id='github' className='col-start-1'>
-                        <Icon src={'/github.svg'} width={'100%'} height={'100%'}/>
+                    <div id='github' className='link-icon col-start-1'>
+                        <a href={defaultProjectPanel?.github}><Icon src={'/github.svg'} width={'100%'} height={'100%'}/></a>
                     </div>
-                    <div id='linkedIn' className='col-start-2'>
+                    <div id='linkedIn' className='link-icon col-start-2'>
                         <a href={defaultProjectPanel?.linkedIn}><Icon src={'/linkedin.svg'} width={'60%'} height={'60%'}/></a>
                     </div>
-                    <div id='gmail' className='col-start-3'>
-                        <a href={defaultProjectPanel?.email}><Icon src={'/email.svg'} width={'100%'} height={'100%'}/></a>
+                    <div id='gmail' className='link-icon col-start-3' onClick={handleCopy}>
+                        <a href={`mailto:${defaultProjectPanel?.email}`}><Icon src={'/email.svg'} width={'100%'} height={'100%'}/></a>
                     </div>
                 </div>
                 

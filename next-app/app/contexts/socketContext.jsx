@@ -11,7 +11,7 @@ export const useSocketContext = () => useContext(socketContext);
 
 export const SocketProvider = ({children}) => {
     const { socketRef } = useRefContext();
-    const { updateDefaultPanel, setCurrProject, updateProjectList, updateTechIcons, updateProjectIcons} = useStateContext();
+    const { updateDefaultPanel, updateProjectList, updateTechIcons, updateProjectIcons, setAdminMode} = useStateContext();
     const [socketReady, setSocketReady] = useState(false);
 
     useEffect(() => {
@@ -19,7 +19,12 @@ export const SocketProvider = ({children}) => {
 
         socketRef.current.on('connected', (isConnected) => {
            setSocketReady(isConnected);
-           socketRef.current.emit('request-content');
+           socketRef.current.emit('check-admin', sessionStorage.getItem('admin-key'));
+        });
+
+        socketRef.current.on('set-admin', (isAdmin) => {
+            if (isAdmin) setAdminMode(true);
+            socketRef.current.emit('request-content');
         });
 
         socketRef.current.on('receive-content', (defaultProject, techIcons, projectIcons, projectList) => {

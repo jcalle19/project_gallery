@@ -12,7 +12,7 @@ const font = Stack_Sans_Text({
     });
 
 const ProjectBox = ({boxInfo}) => {
-    const { setCurrProject } = useStateContext();
+    const { setCurrProject, toggleDefaultPanel } = useStateContext();
     const rotateRef = useRef(null);
     const rotateRefParent = useRef(null);
     const rotateRefInfo = useRef(null);
@@ -21,6 +21,7 @@ const ProjectBox = ({boxInfo}) => {
 
     const handleClick = () => {
         setCurrProject(boxInfo);
+        toggleDefaultPanel(false);
     }
 
     const handleMouseEnter = () => {
@@ -57,11 +58,10 @@ const ProjectBox = ({boxInfo}) => {
             <div className={`box-outer font-config ${font.className}`} ref={rotateRef}>
                 <div className='box-image' style={{transform: 'translateZ(-60px)', backgroundImage: `url(${boxInfo.image})`}}></div>
                 <div className='name-plate' 
-                     style={{backgroundColor: 'var(--pastel-blue)', transform: 'translateZ(10px)'}}
+                     style={{backgroundColor: `${boxInfo.primary}`, transform: 'translateZ(10px)'}}
                 >
                     <p style={{transform: 'translateZ(20px)'}}>{boxInfo.name}</p>
                 </div>
-                <div className='tech-list'></div>
             </div>
         </div>
     )
