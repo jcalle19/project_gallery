@@ -1,7 +1,15 @@
 import React from 'react'
+import { useStateContext } from '../contexts/stateContext.jsx'
 import '../css/globals.css'
 
-const TechStackIcon = ({src, sizePercent}) => {
+const TechStackIcon = ({label, src, sizePercent}) => {
+  const { setInfoText, toggleIconInfo } = useStateContext();
+
+  const handleMouseOver = () => {
+    setInfoText(label);
+    toggleIconInfo(true);
+  }
+
   return (
     <div style={{
                  position: 'relative',
@@ -14,7 +22,9 @@ const TechStackIcon = ({src, sizePercent}) => {
                  width:`${sizePercent}%`, 
                  height:`${sizePercent}%`,
                  transform: 'translate(-50%, -50%)',
-                }}></div>
+                }}
+        onMouseEnter={handleMouseOver}
+        onMouseLeave={()=>toggleIconInfo(false)}></div>
   )
 }
 

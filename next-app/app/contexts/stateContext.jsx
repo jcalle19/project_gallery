@@ -16,10 +16,8 @@ export const StateProvider = ({children}) => {
     const [techWindowOpen, toggleTechWindow] = useState(false);
     const [projectWindowOpen, toggleProjectWindow] = useState(false);
     const [filterList, updateFilterList] = useState(new Set());
-    /* Currently unused, will probably add to future update
     const [infoText, setInfoText] = useState('');
     const [showInfo, toggleIconInfo] = useState(false);
-    */
     const [adminMode, setAdminMode] = useState(false);
 
     const value=useMemo(()=>({
@@ -32,8 +30,11 @@ export const StateProvider = ({children}) => {
         techWindowOpen, toggleTechWindow,
         projectWindowOpen, toggleProjectWindow,
         filterList, updateFilterList,
+        infoText, setInfoText,
+        showInfo, toggleIconInfo,
         adminMode, setAdminMode
-    }), [defaultProjectPanel, defaultPanelOpen, currProject, techIcons, projectIcons, projectList, techWindowOpen, projectWindowOpen, filterList, adminMode]);
+    }), [defaultProjectPanel, defaultPanelOpen, currProject, techIcons, projectIcons, 
+        projectList, techWindowOpen, projectWindowOpen, filterList, infoText, showInfo, adminMode]);
     
     return <stateContext.Provider value={value}>
         {children}

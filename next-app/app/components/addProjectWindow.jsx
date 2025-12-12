@@ -104,7 +104,7 @@ const AddProjectWindow = () => {
                                 key={index} style={{height: '40%', aspectRatio: '1 / 1'}}
                                 onClick={(e)=>handleIconClick(entry[0])}
                             >
-                        <TechStackIcon src={entry[1]} sizePercent={'90'}/>
+                        <TechStackIcon label={entry[0]} src={entry[1]} sizePercent={'90'}/>
                     </div>
                 })}
             </div>

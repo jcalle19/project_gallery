@@ -35,7 +35,7 @@ const ProjectDisplay = () => {
                             {
                                 currProject.techStack.map((key, index)=>{
                                     return <div key={index} className='icon-container'>
-                                        <TechStackIcon src={techIcons.get(key)} sizePercent={'90'}/>
+                                        <TechStackIcon label={key} src={techIcons.get(key)} sizePercent={'90'}/>
                                     </div>
                                 })
                             }
