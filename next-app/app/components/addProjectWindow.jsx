@@ -4,8 +4,10 @@ import TechStackIcon from './techStackIcon.jsx'
 import '../css/projectWindow.css'
 import '../css/globals.css'
 import { Work_Sans } from 'next/font/google'
-import { useStateContext } from '../contexts/stateContext.jsx'
 import { useRefContext } from '../contexts/refContext.jsx'
+import { useStateContext } from '../contexts/stateContext.jsx'
+import { useUIContext } from '../contexts/uiContext.jsx'
+
 
 const font = Work_Sans({
         subsets: ['latin'],
@@ -13,7 +15,8 @@ const font = Work_Sans({
     });
 
 const AddProjectWindow = () => {
-    const { projectWindowOpen, techIcons, currProject, setCurrProject } = useStateContext();
+    const { techIcons, currProject, setCurrProject } = useStateContext();
+    const { projectWindowOpen, toggleProjectWindow } = useUIContext();
     const { socketRef } = useRefContext();
     const tempProject = useRef(null);
     const [nameText, setName] = useState('');
@@ -44,6 +47,17 @@ const AddProjectWindow = () => {
         return preview;
     }
 
+    const resetFields = () => {
+        setName('');
+        setColor('');
+        setImage('');
+        setGithub('');
+        setLink('');
+        setDescription('');
+        updateTechList(new Set());
+        toggleProjectWindow(false);
+    }
+
     const handleIconClick = (key) => {
         updateTechList(prev => {
         const next = new Set(prev);
@@ -58,10 +72,12 @@ const AddProjectWindow = () => {
 
     const handleAdd = () => {
         socketRef.current.emit('add-project', nameText, getProjectObject(), sessionStorage.getItem('admin-key'));
+        resetFields();
     }
 
     const handleRemove = () => {
         socketRef.current.emit('remove-project', nameText, sessionStorage.getItem('admin-key'));
+        resetFields();
     }
 
     const handlePreview = () => {

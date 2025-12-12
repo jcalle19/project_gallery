@@ -3,7 +3,7 @@ import {useState} from 'react'
 import '../css/techWindow.css'
 import '../css/globals.css'
 import { Work_Sans } from 'next/font/google'
-import { useStateContext } from '../contexts/stateContext.jsx'
+import { useUIContext } from '../contexts/uiContext.jsx'
 import { useRefContext } from '../contexts/refContext.jsx'
 
 const font = Work_Sans({
@@ -12,7 +12,7 @@ const font = Work_Sans({
     });
 
 const AddTechWindow = () => {
-    const { techWindowOpen } = useStateContext();
+    const { techWindowOpen } = useUIContext();
     const { socketRef } = useRefContext();
     const [keyText, updateKeyText] = useState('');
     const [urlText, updateUrlText] = useState('');

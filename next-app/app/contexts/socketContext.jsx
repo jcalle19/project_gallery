@@ -4,6 +4,7 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { useRefContext } from './refContext.jsx';
 import { useStateContext } from './stateContext.jsx';
+import { useUIContext } from './uiContext.jsx';
 import { io } from 'socket.io-client';
 
 const socketContext = createContext();
@@ -11,7 +12,8 @@ export const useSocketContext = () => useContext(socketContext);
 
 export const SocketProvider = ({children}) => {
     const { socketRef } = useRefContext();
-    const { updateDefaultPanel, updateProjectList, updateTechIcons, updateProjectIcons, setAdminMode} = useStateContext();
+    const { updateProjectList, updateTechIcons, updateProjectIcons, setAdminMode} = useStateContext();
+    const { updateDefaultPanel } = useUIContext();
     const [socketReady, setSocketReady] = useState(false);
 
     useEffect(() => {

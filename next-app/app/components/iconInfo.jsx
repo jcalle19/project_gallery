@@ -1,7 +1,7 @@
 //not implemented yet
 'use client'
 import {useState, useEffect} from 'react'
-import { useStateContext } from '../contexts/stateContext.jsx'
+import { useUIContext } from '../contexts/uiContext.jsx'
 import { Stack_Sans_Text } from 'next/font/google'
 import '../css/globals.css'
 
@@ -11,7 +11,7 @@ const font = Stack_Sans_Text({
     });
 
 const IconInfo = () => {
-    const { infoText, showInfo } = useStateContext();
+    const { infoText, showInfo } = useUIContext();
     const [coords, setCoords] = useState({x: 0, y: 0});
 
     const translate = (e) => {

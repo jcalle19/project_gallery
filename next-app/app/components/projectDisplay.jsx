@@ -1,6 +1,7 @@
 'use client'
 import React from 'react'
-import { useStateContext } from '../contexts/stateContext'
+import { useStateContext } from '../contexts/stateContext.jsx'
+import { useUIContext } from '../contexts/uiContext.jsx'
 import { Work_Sans } from 'next/font/google'
 import TechStackIcon from './techStackIcon.jsx'
 import Icon from './icon.jsx'
@@ -13,8 +14,14 @@ const font = Work_Sans({
     });
 
 const ProjectDisplay = () => {
-    const { currProject,  techIcons, toggleDefaultPanel } = useStateContext();
+    const { currProject,  techIcons } = useStateContext();
+    const { toggleDefaultPanel, setInfoText, toggleIconInfo } = useUIContext();
     
+    const setIconInfo = (toggle, label) => {
+        setInfoText(label);
+        toggleIconInfo(toggle);
+    }
+
     const handleClose = () => {
         toggleDefaultPanel(true);
     }
@@ -48,10 +55,16 @@ const ProjectDisplay = () => {
                      <div id='Links' className='section grid grid-rows-2' style={{backgroundColor: 'var(--slate)'}}>
                         <div className='section-title text row-start-1'>Links</div>
                         <div className='row-start-2 grid grid-cols-2' style={{marginLeft: '-4.5%'}}>
-                            <div id='github' className='link-icon col-start-1'>
+                            <div id='github' className='link-icon col-start-1'
+                                 onMouseEnter={()=>setIconInfo(true, 'Github')}
+                                 onMouseLeave={()=>setIconInfo(false, '')}
+                            >
                                 <a href={''}><Icon src={'/github.svg'} width={'100%'} height={'100%'}/></a>
                             </div>
-                            <div className='link-icon col-start-2'>
+                            <div className='link-icon col-start-2'
+                                 onMouseEnter={()=>setIconInfo(true, 'Go to Project')}
+                                 onMouseLeave={()=>setIconInfo(false, '')}
+                            >
                                 <a href={''}><Icon src={'/link.svg'} width={'70%'} height={'70%'}/></a>
                             </div>
                         </div>

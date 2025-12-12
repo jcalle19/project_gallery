@@ -1,9 +1,9 @@
 import React from 'react'
-import { useStateContext } from '../contexts/stateContext.jsx'
+import { useUIContext } from '../contexts/uiContext.jsx'
 import '../css/globals.css'
 
 const TechStackIcon = ({label, src, sizePercent}) => {
-  const { setInfoText, toggleIconInfo } = useStateContext();
+  const { setInfoText, toggleIconInfo } = useUIContext();
 
   const handleMouseOver = () => {
     setInfoText(label);

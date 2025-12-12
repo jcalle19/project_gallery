@@ -1,6 +1,7 @@
 'use client'
 import { useState, useRef } from 'react'
-import { useStateContext } from '../contexts/stateContext'
+import { useStateContext } from '../contexts/stateContext.jsx'
+import { useUIContext } from '../contexts/uiContext.jsx'
 import { Stack_Sans_Text } from 'next/font/google'
 import Icon from './icon.jsx'
 import '../css/globals.css'
@@ -12,7 +13,8 @@ const font = Stack_Sans_Text({
     });
 
 const ProjectBox = ({boxInfo}) => {
-    const { setCurrProject, toggleDefaultPanel } = useStateContext();
+    const { setCurrProject } = useStateContext();
+    const { toggleDefaultPanel } = useUIContext();
     const rotateRef = useRef(null);
     const rotateRefParent = useRef(null);
     const rotateRefInfo = useRef(null);

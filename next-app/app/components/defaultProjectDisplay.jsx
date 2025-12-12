@@ -1,17 +1,21 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useRefContext } from '../contexts/refContext.jsx'
-import { useStateContext } from '../contexts/stateContext.jsx'
+import { useUIContext } from '../contexts/uiContext.jsx'
 import Icon from './icon.jsx'
 import '../css/globals.css'
 import '../css/projectDisplay.css'
 
 const DefaultProjectDisplay = () => {
-    const { defaultProjectPanel, defaultPanelOpen } = useStateContext();
+    const { defaultProjectPanel, defaultPanelOpen, setInfoText, toggleIconInfo } = useUIContext();
 
     const handleCopy = () => {
         navigator.clipboard.writeText(defaultProjectPanel?.email);
+    }
+
+    const setIconInfo = (toggle, label) => {
+        setInfoText(label);
+        toggleIconInfo(toggle);
     }
 
     return (
@@ -37,14 +41,23 @@ const DefaultProjectDisplay = () => {
                     Links
                 </div>
                 <div className='grid grid-cols-3 row-start-2' style={{marginLeft: '-4%'}}>
-                    <div id='github' className='link-icon col-start-1'>
+                    <div id='github' className='link-icon col-start-1' 
+                         onMouseEnter={()=>setIconInfo(true, 'Github')}
+                         onMouseLeave={()=>setIconInfo(false, '')}
+                    >
                         <a href={defaultProjectPanel?.github}><Icon src={'/github.svg'} width={'100%'} height={'100%'}/></a>
                     </div>
-                    <div id='linkedIn' className='link-icon col-start-2'>
+                    <div id='linkedIn' className='link-icon col-start-2'
+                         onMouseEnter={()=>setIconInfo(true, 'LinkedIn')}
+                         onMouseLeave={()=>setIconInfo(false, '')}
+                    >
                         <a href={defaultProjectPanel?.linkedIn}><Icon src={'/linkedin.svg'} width={'60%'} height={'60%'}/></a>
                     </div>
-                    <div id='gmail' className='link-icon col-start-3' onClick={handleCopy}>
-                        <a href={`mailto:${defaultProjectPanel?.email}`}><Icon src={'/email.svg'} width={'100%'} height={'100%'}/></a>
+                    <div id='gmail' className='link-icon col-start-3' onClick={handleCopy}
+                        onMouseEnter={()=>setIconInfo(true, 'Copy Email')}
+                        onMouseLeave={()=>setIconInfo(false, '')}
+                    >
+                        <Icon src={'/email.svg'} width={'100%'} height={'100%'}/>
                     </div>
                 </div>
                 
