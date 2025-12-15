@@ -1,16 +1,8 @@
 import dotenv from 'dotenv';
+import { MongoClient } from 'mongodb';
 dotenv.config();
 
-const techImages = new Map([
-    ['HTML', 'https://d3cym6gpva.ufs.sh/f/GUZU0kQvwB5afR8NZDwEpNrkVIJ2WXPeTxcDGSwmsU3H5y1B'],
-    ['CSS', 'https://d3cym6gpva.ufs.sh/f/GUZU0kQvwB5aVnIj4JezQYAdtwHirUK6NMqZ7XL3Ghvylef1'],
-    ['NextJS', 'https://d3cym6gpva.ufs.sh/f/GUZU0kQvwB5aijh0y1Heb6hUsBN3muaXpP7y4rqWlQ5OKj98'],
-    ['Tailwind', 'https://d3cym6gpva.ufs.sh/f/GUZU0kQvwB5aWweBCrY08T46c9YLFPEqQwoSfezjpNXJVbGu'],
-    ['React', 'https://d3cym6gpva.ufs.sh/f/GUZU0kQvwB5ai3bdnNeb6hUsBN3muaXpP7y4rqWlQ5OKj98c'],
-    ['NodeJS', 'https://d3cym6gpva.ufs.sh/f/GUZU0kQvwB5aboyafrNDTSBm6I7F1wvG9aHOyV3hu4RKWYJP'],
-    ['ExpressJS', 'https://d3cym6gpva.ufs.sh/f/GUZU0kQvwB5aSOpMHOxMgOLPanj1Kz6TsVowCEN8dA4krhS9'],
-    ['SocketIO', 'https://d3cym6gpva.ufs.sh/f/GUZU0kQvwB5aU5tyE6K6MKtCZfl1eJGy09vi8mFXg2rk35LR'],
-]);
+const techImages = new Map();
 
 const projectImages = new Map();
 
@@ -28,17 +20,7 @@ const defaultProject = {
 };
 
 //holds items as key: object{name: 'project name', primary: 'css color', techStack: [], image: 'image link', github: 'github', link: 'website link', desc: ''}
-const projectList = new Map([
-        ['example-project-1', {name: 'Example Project1', primary: 'var(--pastel-blue)', techStack: 
-                ['NextJS','ExpressJS','SocketIO','HTML','CSS'], image: 'https://static.vecteezy.com/system/resources/previews/002/073/179/non_2x/colorful-abstract-shape-geometric-in-dark-background-free-vector.jpg', github: 'github', link: 'exLink', desc: 'blah blah blah blah blah'}],
-        ['example-project-2', {name: 'Example Project2', primary: 'var(--pastel-blue)', techStack: [], image: 'https://img.freepik.com/free-vector/flat-design-geometric-shapes-background_23-2148366514.jpg', github: 'github', link: 'exLink', desc: ''}],
-        ['example-project-3', {name: 'Example Project3', primary: 'var(--pastel-blue)', techStack: [], image: 'https://i.fbcd.co/products/resized/resized-750-500/e29d5583f90410ee3072688e086ce32540170d92137ebe3e335ef9857572b31c.jpg', github: 'github', link: 'exLink', desc: ''}],
-        ['example-project-4', {name: 'Example Project4', primary: 'var(--pastel-blue)', techStack: [], image: 'https://wallpapers.com/images/hd/shapes-background-dmcw3546ei054xxt.jpg', link: 'exLink', desc: ''}],
-        ['example-project-5', {name: 'Example Project5', primary: 'var(--pastel-blue)', techStack: [], image: 'https://wallpapercave.com/wp/wp1847817.jpg', link: 'exLink', desc: ''}],
-        ['example-project-6', {name: 'Example Project6', primary: 'var(--pastel-blue)', techStack: [], image: 'https://plus.unsplash.com/premium_photo-1701863689953-790b57f234cb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YWJzdHJhY3QlMjBzaGFwZXN8ZW58MHx8MHx8fDA%3D', github: 'github', link: 'exLink', desc: ''}],
-        ['example-project-7', {name: 'Example Project7', primary: 'var(--pastel-blue)', techStack: [], image: 'https://media.istockphoto.com/id/1422735620/vector/the-graphic-design-element-and-abstract-geometric-background-with-isometric-vector-blocks.jpg?s=612x612&w=0&k=20&c=50x5ASx6AVhZcOzoNnj8z7FlWG2T3Ls_Ov3AEOgcz_k=', github: 'github', link: 'exLink', desc: ''}],
-        ['example-project-8', {name: 'Example Project8', primary: 'var(--pastel-blue)', techStack: [], image: 'https://img.freepik.com/free-vector/modern-abstract-dark-violate-pink-background_84443-2784.jpg?semt=ais_hybrid&w=740&q=80', github: 'github', link: 'exLink', desc: ''}],
-    ]);
+const projectList = new Map();
 
 const safe = (handler) => {
     return async (...args) => {
@@ -55,6 +37,14 @@ const verifyAuth = (key) => {
     return false;
 }
 
+async function loadStateFromDB(db) {
+    const projects = await db.collection("projects").find().toArray();
+    const techs = await db.collection("tech-stack").find().toArray();
+
+    projects.forEach(p => projectList.set(p._id, p.projectInfo));
+    techs.forEach(t => techImages.set(t._id, t.url));
+}
+
 const connection = (io, socket) => {
     console.log('a user connected');
     io.to(socket.id).emit('connected', true);
@@ -64,30 +54,48 @@ const checkAdmin = (io, socket, key) => {
     io.to(socket.id).emit('set-admin', verifyAuth(key));
 }
 
-const addTechIcon = (key, url) => {
+const addTechIcon = async (key, url, db) => {
+    const tech = { _id: key, url };
     techImages.set(key, url);
     console.log('adding icon', key);
+    await db.collection('tech-stack').updateOne(
+        { _id: key },
+        { $set: tech},
+        { upsert: true },
+    )
 }
 
-const removeTechIcon = (key) => {
+const removeTechIcon = async (key, db) => {
     if (techImages.has(key)) techImages.delete(key);
     console.log('removing icon', key);
+    await db.collection('tech-stack').deleteOne({ _id: key});
 }
 
+const addProject = async (key, projectInfo, db) => {
+    const project = { _id: key, projectInfo};
+    projectList.set(key, projectInfo);
+    console.log('adding project', key);
+    await db.collection('projects').updateOne(
+        { _id: key },
+        { $set: project },
+        { upsert: true },
+    )
+}
+
+const removeProject = async (key, db) => {
+    if (projectList.has(key)) projectList.delete(key);
+    console.log('removing project', key);
+    await db.collection('projects').deleteOne({ _id: key});
+}
+
+//unused
 const addProjectImage = (key, url) => {
     projectImages.set(key, url);
 }
 
+//unused
 const removeProjectImage = (key) => {
     if (projectImages.has(key)) projectImages.delete(key);
-}
-
-const addProject = (key, projectInfo) => {
-    projectList.set(key, projectInfo);
-}
-
-const removeProject = (key) => {
-    if (projectList.has(key)) projectList.delete(key);
 }
 
 const sendRoomInfo = (io, socket) => {
@@ -96,6 +104,7 @@ const sendRoomInfo = (io, socket) => {
 export const util = {
     safe,
     verifyAuth,
+    loadStateFromDB,
     connection,
     checkAdmin,
     addTechIcon,

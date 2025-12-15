@@ -11,21 +11,23 @@ const client = new MongoClient(process.env.URI, {
   }
 });
 
-async function run() {
+async function run(io) {
   try {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
-  } finally {
-    // Ensures that the client will close when you finish/error
-    await client.close();
+
+    const db = client.db('ProjectInfo');
+    socket_functions(io, db);
+  } catch (err) {
+    console.error("MongoDB connection error:", err);
+    process.exit(1);
   }
 }
 //run().catch(console.dir);
 
 export const DB_connect = (io) => {
-    run().catch(console.dir);
-    socket_functions(io);
+    run(io).catch(console.dir);
 }
