@@ -1,12 +1,12 @@
 'use client'
 import React from 'react'
-import { useStateContext } from '../contexts/stateContext.jsx'
-import { useUIContext } from '../contexts/uiContext.jsx'
+import { useStateContext } from '@/contexts/stateContext.jsx'
+import { useUIContext } from '@/contexts/uiContext.jsx'
 import { Work_Sans } from 'next/font/google'
 import TechStackIcon from './techStackIcon.jsx'
 import Icon from './icon.jsx'
-import '../css/globals.css'
-import '../css/projectDisplay.css'
+import '@/css/globals.css'
+import '@/css/projectDisplay.css'
 
 const font = Work_Sans({
         subsets: ['latin'],

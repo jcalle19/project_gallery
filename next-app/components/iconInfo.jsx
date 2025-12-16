@@ -1,9 +1,9 @@
 //not implemented yet
 'use client'
 import {useState, useEffect} from 'react'
-import { useUIContext } from '../contexts/uiContext.jsx'
+import { useUIContext } from '@/contexts/uiContext.jsx'
 import { Stack_Sans_Text } from 'next/font/google'
-import '../css/globals.css'
+import '@/css/globals.css'
 
 const font = Stack_Sans_Text({
         subsets: ['latin'],

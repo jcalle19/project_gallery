@@ -1,12 +1,12 @@
 'use client'
 import {useState, useEffect, useRef} from 'react'
 import TechStackIcon from './techStackIcon.jsx'
-import '../css/projectWindow.css'
-import '../css/globals.css'
+import '@/css/projectWindow.css'
+import '@/css/globals.css'
 import { Work_Sans } from 'next/font/google'
-import { useRefContext } from '../contexts/refContext.jsx'
-import { useStateContext } from '../contexts/stateContext.jsx'
-import { useUIContext } from '../contexts/uiContext.jsx'
+import { useRefContext } from '@/contexts/refContext.jsx'
+import { useStateContext } from '@/contexts/stateContext.jsx'
+import { useUIContext } from '@/contexts/uiContext.jsx'
 
 
 const font = Work_Sans({

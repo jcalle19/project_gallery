@@ -3,10 +3,10 @@
 import {useState, useEffect} from 'react'
 import Icon from './icon.jsx'
 import TechStackIcon from './techStackIcon.jsx'
-import { useStateContext } from '../contexts/stateContext.jsx'
-import { useUIContext } from '../contexts/uiContext.jsx'
-import '../css/globals.css'
-import '../css/filterBar.css'
+import { useStateContext } from '@/contexts/stateContext.jsx'
+import { useUIContext } from '@/contexts/uiContext.jsx'
+import '@/css/globals.css'
+import '@/css/filterBar.css'
 
 const FilterBar = () => {
   const { adminMode, techIcons, filterList, updateFilterList } = useStateContext();

@@ -1,6 +1,6 @@
 import React from 'react'
-import { useUIContext } from '../contexts/uiContext.jsx'
-import '../css/globals.css'
+import { useUIContext } from '@/contexts/uiContext.jsx'
+import '@/css/globals.css'
 
 const TechStackIcon = ({label, src, sizePercent}) => {
   const { setInfoText, toggleIconInfo } = useUIContext();

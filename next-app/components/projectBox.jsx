@@ -1,11 +1,11 @@
 'use client'
 import { useState, useRef } from 'react'
-import { useStateContext } from '../contexts/stateContext.jsx'
-import { useUIContext } from '../contexts/uiContext.jsx'
+import { useStateContext } from '@/contexts/stateContext.jsx'
+import { useUIContext } from '@/contexts/uiContext.jsx'
 import { Stack_Sans_Text } from 'next/font/google'
 import Icon from './icon.jsx'
-import '../css/globals.css'
-import '../css/projectBox.css'
+import '@/css/globals.css'
+import '@/css/projectBox.css'
 
 const font = Stack_Sans_Text({
         subsets: ['latin'],

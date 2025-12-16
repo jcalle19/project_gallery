@@ -1,8 +1,8 @@
 import React from 'react'
 import Icon from './icon.jsx'
 import { Work_Sans } from 'next/font/google'
-import '../css/globals.css'
-import '../css/titleBar.css'
+import '@/css/globals.css'
+import '@/css/titleBar.css'
 
 const font = Work_Sans({
         subsets: ['latin'],

@@ -1,9 +1,9 @@
 'use client'
 import {useEffect, useRef, useState} from 'react'
-import { useStateContext } from '../contexts/stateContext'
+import { useStateContext } from '@/contexts/stateContext'
 import ProjectBox from './projectBox.jsx'
-import '../css/projectBox.css'
-import '../css/globals.css'
+import '@/css/projectBox.css'
+import '@/css/globals.css'
 
 const ProjectBoxContainer = () => {
     //Will be obtained from server

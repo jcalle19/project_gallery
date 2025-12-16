@@ -1,10 +1,10 @@
 'use client'
 import {useState} from 'react'
-import '../css/techWindow.css'
-import '../css/globals.css'
+import '@/css/techWindow.css'
+import '@/css/globals.css'
 import { Work_Sans } from 'next/font/google'
-import { useUIContext } from '../contexts/uiContext.jsx'
-import { useRefContext } from '../contexts/refContext.jsx'
+import { useUIContext } from '@/contexts/uiContext.jsx'
+import { useRefContext } from '@/contexts/refContext.jsx'
 
 const font = Work_Sans({
         subsets: ['latin'],

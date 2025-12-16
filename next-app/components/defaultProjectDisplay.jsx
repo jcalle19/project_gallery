@@ -3,8 +3,8 @@
 import { useState, useEffect } from 'react'
 import { useUIContext } from '../contexts/uiContext.jsx'
 import Icon from './icon.jsx'
-import '../css/globals.css'
-import '../css/projectDisplay.css'
+import '@/css/globals.css'
+import '@/css/projectDisplay.css'
 
 const DefaultProjectDisplay = () => {
     const { defaultProjectPanel, defaultPanelOpen, setInfoText, toggleIconInfo } = useUIContext();
