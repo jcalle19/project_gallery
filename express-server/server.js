@@ -1,3 +1,4 @@
+import dotenv from 'dotenv';
 import express from 'express';
 import http from 'http';
 import { Server } from 'socket.io';
@@ -5,6 +6,7 @@ import { socket_functions } from './socket_handler.js'
 import { DB_connect } from './database.js'
 import cors from 'cors';
 //import socket_handler from './socket_handler.js';
+dotenv.config();
 
 const app = express();
 const server = http.createServer(app);
