@@ -58,7 +58,7 @@ const ProjectBox = ({boxInfo}) => {
                 onMouseLeave={handleMouseExit}
         >
             <div className={`box-outer font-config ${font.className}`} ref={rotateRef}>
-                <div className='box-image' style={{transform: 'translateZ(-60px)', backgroundImage: `url(${boxInfo.image})`}}></div>
+                <div className='box-image' style={{transform: 'translateZ(-60px)', backgroundImage: `url(${boxInfo.thumbnail})`}}></div>
                 <div className='name-plate' 
                      style={{backgroundColor: `${boxInfo.primary}`, transform: 'translateZ(10px)'}}
                 >

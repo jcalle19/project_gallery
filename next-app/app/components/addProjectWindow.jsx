@@ -21,6 +21,7 @@ const AddProjectWindow = () => {
     const tempProject = useRef(null);
     const [nameText, setName] = useState('');
     const [colorText, setColor] = useState('');
+    const [thumbnailText, setThumbnail] = useState('');
     const [imageText, setImage] = useState('');
     const [githubText, setGithub] = useState('');
     const [linkText, setLink] = useState('');
@@ -39,6 +40,7 @@ const AddProjectWindow = () => {
             name: nameText, 
             primary: colorText, 
             techStack: [...techSet], 
+            thumbnail: thumbnailText,
             image: imageText, 
             github: githubText, 
             link: linkText, 
@@ -50,6 +52,7 @@ const AddProjectWindow = () => {
     const resetFields = () => {
         setName('');
         setColor('');
+        setThumbnail('');
         setImage('');
         setGithub('');
         setLink('');
@@ -98,23 +101,27 @@ const AddProjectWindow = () => {
                 <label className='col-start-1'>Primary Color: </label>
                 <input className='col-start-2' type='text' value={colorText ?? ''} onChange={(e)=>setColor(e.target.value)}/>
             </div>
-            <div className='grid grid-cols-[1fr_5fr] row-start-3'>
+            <div className='grid grid-cols-[1fr_3fr] row-start-3'>
+                <label className='col-start-1'>Thumbnail: </label>
+                <input className='col-start-2' type='text' value={thumbnailText ?? ''} onChange={(e)=>setThumbnail(e.target.value)}/>
+            </div>
+            <div className='grid grid-cols-[1fr_5fr] row-start-4'>
                 <label className='col-start-1'>Image: </label>
                 <input className='col-start-2' type='text' value={imageText ?? ''} onChange={(e)=>setImage(e.target.value)}/>
             </div>
-            <div className='grid grid-cols-[1fr_5fr] row-start-4'>
+            <div className='grid grid-cols-[1fr_5fr] row-start-5'>
                 <label className='col-start-1'>Github: </label> 
                 <input className='col-start-2' type='text' value={githubText ?? ''} onChange={(e)=>setGithub(e.target.value)}/>
             </div>
-            <div className='grid grid-cols-[1fr_5fr] row-start-5'>
+            <div className='grid grid-cols-[1fr_5fr] row-start-6'>
                 <label className='col-start-1'>Link: </label>
                 <input className='col-start-2' type='text' value={linkText ?? ''} onChange={(e)=>setLink(e.target.value)}/>
             </div>
-            <div className='grid grid-cols-[1fr_4fr] row-start-6 row-span-3'>
+            <div className='grid grid-cols-[1fr_4fr] row-start-7 row-span-3'>
                 <label className='col-start-1' id='description-label'>Description: </label>
                 <textarea className='col-start-2' id='description-area' name='description' rows='5' type='text' value={descriptionText ?? ''} onChange={(e)=>setDescription(e.target.value)}/>
             </div>
-            <div id='tech-container' className='row-start-9 row-span-4'>
+            <div id='tech-container' className='row-start-10 row-span-3'>
                 {Array.from(techIcons).map((entry, index)=>{
                     return <div className={`tech-icon ${techSet.has(entry[0]) ? 'selected' : ''}`} 
                                 key={index} style={{height: '40%', aspectRatio: '1 / 1'}}

@@ -8,24 +8,31 @@ import cors from 'cors';
 
 const app = express();
 const server = http.createServer(app);
+const NODE_ENV = process.env.NODE_ENV;
+const FRONTEND_URL = process.env.FRONTEND_URL;
+
 const io = new Server(server, {
-    cors: {
-        origin: '*',
-        methods: ['GET', 'POST'],
-    },
+  cors: {
+    origin: NODE_ENV === 'production'
+      ? FRONTEND_URL
+      : '*',
+    methods: ['GET', 'POST'],
+  },
 });
 
-const PORT = 5000;
-
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: NODE_ENV === 'production'
+    ? FRONTEND_URL
+    : '*'
+}));
 
 //Database
 DB_connect(io);
 
 //Socket Events
-//socket_functions(io);
 
+const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => {
-    console.log(`Server is listening at http://localhost:${PORT}`);
+    console.log(`Server is listening on ${PORT}`);
 });

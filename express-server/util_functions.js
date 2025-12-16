@@ -19,7 +19,7 @@ const defaultProject = {
     email: 'jallenn0622@gmail.com'
 };
 
-//holds items as key: object{name: 'project name', primary: 'css color', techStack: [], image: 'image link', github: 'github', link: 'website link', desc: ''}
+//holds items as key: object{name: 'project name', primary: 'css color', techStack: [], thumbnail: 'image link', image: 'img', github: 'github', link: 'website link', desc: ''}
 const projectList = new Map();
 
 const safe = (handler) => {
