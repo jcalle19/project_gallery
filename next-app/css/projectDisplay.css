@@ -21,6 +21,10 @@
     padding-bottom: 5px;
 }
 
+#about-msg {
+    font-size: 18px;
+}
+
 #close-button {
     position: absolute;
     top: 10px;
