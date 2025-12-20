@@ -17,7 +17,8 @@
 }
 
 #project-title, #default-title {
-    font-size: 35px;
+    font-size: 30px;
+    padding-bottom: 5px;
 }
 
 #close-button {
@@ -56,7 +57,7 @@
 }
 
 .section-title {
-    font-size: 25px;
+    font-size: 20px;
     margin-bottom: 3%;
 }
 
@@ -84,7 +85,7 @@
 
 #description {
     height: fit-content;
-    font-size: 15px;
+    font-size: 10px;
 }
 
 #Links {

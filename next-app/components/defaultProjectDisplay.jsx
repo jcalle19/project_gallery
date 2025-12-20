@@ -26,7 +26,7 @@ const DefaultProjectDisplay = () => {
                 <div>{defaultProjectPanel?.entryMsg}</div>
             </div>
             <div id='image' className='section'></div>
-            <div id='about-msg' className='section'>
+            <div id='about-msg' className='section' style={{display: `${defaultPanelOpen ? '' : 'none'}`}}>
                 <div className='section-title'>About</div>
                 {
                     defaultProjectPanel?.about.map((line, index)=>{
@@ -40,7 +40,7 @@ const DefaultProjectDisplay = () => {
                 <div className='row-start-1 section-title'>
                     Links
                 </div>
-                <div className='grid grid-cols-3 row-start-2' style={{marginLeft: '-4%'}}>
+                <div className='grid grid-cols-3 row-start-2' style={{display: `${defaultPanelOpen ? '' : 'none'}`, marginLeft: '-4%'}}>
                     <div id='github' className='link-icon col-start-1' 
                          onMouseEnter={()=>setIconInfo(true, 'Github')}
                          onMouseLeave={()=>setIconInfo(false, '')}
