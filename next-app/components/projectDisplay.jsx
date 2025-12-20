@@ -59,13 +59,13 @@ const ProjectDisplay = () => {
                                  onMouseEnter={()=>setIconInfo(true, 'Github')}
                                  onMouseLeave={()=>setIconInfo(false, '')}
                             >
-                                <a href={''}><Icon src={'/github.svg'} width={'100%'} height={'100%'}/></a>
+                                <a href={currProject.github}><Icon src={'/github.svg'} width={'100%'} height={'100%'}/></a>
                             </div>
                             <div className='link-icon col-start-2'
                                  onMouseEnter={()=>setIconInfo(true, 'Go to Project')}
                                  onMouseLeave={()=>setIconInfo(false, '')}
                             >
-                                <a href={''}><Icon src={'/link.svg'} width={'70%'} height={'70%'}/></a>
+                                <a href={currProject.link}><Icon src={'/link.svg'} width={'70%'} height={'70%'}/></a>
                             </div>
                         </div>
                     </div>
