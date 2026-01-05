@@ -54,15 +54,15 @@ const FilterBar = () => {
                 }
               </div> : ''
             }
+            {adminMode ?
+              <div className='icon' onClick={handleToggleProjectMenu}>
+                {projectWindowOpen ? 
+                  <Icon src={'/minimize.svg'} width={'70%'} height={'70%'}/> : 
+                  <Icon src={'/add.svg'} width={'70%'} height={'70%'}/>
+                }
+              </div> : ''
+            }
           </div>
-          {adminMode ?
-            <div className='window-button' onClick={handleToggleProjectMenu}>
-              {projectWindowOpen ? 
-                <Icon src={'/minimize.svg'} width={'70%'} height={'70%'}/> : 
-                <Icon src={'/add.svg'} width={'70%'} height={'70%'}/>
-              }
-            </div> : ''
-          }
         </div>
   )
 }

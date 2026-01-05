@@ -43,6 +43,7 @@ const IconInfo = () => {
             borderRadius: '5px',
             transform: 'translate(0%, -100%)',
             boxShadow: '0px 0px 5px black',
+            zIndex: '1000000',
         }}>{infoText}</div>
     )
 }

@@ -1,5 +1,5 @@
 'use client'
-import { useState, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useStateContext } from '@/contexts/stateContext.jsx'
 import { useUIContext } from '@/contexts/uiContext.jsx'
 import { Stack_Sans_Text } from 'next/font/google'
@@ -13,13 +13,24 @@ const font = Stack_Sans_Text({
     });
 
 const ProjectBox = ({boxInfo}) => {
-    const { setCurrProject } = useStateContext();
+    const { currProject, setCurrProject } = useStateContext();
     const { toggleDefaultPanel } = useUIContext();
     const rotateRef = useRef(null);
     const rotateRefParent = useRef(null);
     const rotateRefInfo = useRef(null);
     const origin = useRef({x: 0, y: 0});
     const transformBefore = useRef('');
+    const [isAnimated, toggleAnimation] = useState(false);
+
+    useEffect(()=>{
+        let animate = boxInfo.name === currProject?.name ? true : false;
+        toggleAnimation(animate);
+    },[currProject]);
+
+    const handleLeave = () => {
+        if (boxInfo.name !== currProject?.name) toggleAnimation(false);
+        return;
+    }
 
     const handleClick = () => {
         setCurrProject(boxInfo);
@@ -35,7 +46,7 @@ const ProjectBox = ({boxInfo}) => {
         if (rotateRefInfo.current === null) rotateRefInfo.current = rotateRef.current.getBoundingClientRect();
         origin.current.x = rotateRefInfo.current.left + (rotateRefInfo.current.width/2);
         origin.current.y = rotateRefInfo.current.top + (rotateRefInfo.current.height/2);
-        let distance = Math.sqrt(((e.clientX - origin.current.x)**2) + ((e.clientY - origin.current.y)**2));
+        let distance = Math.sqrt(((e.clientX - origin.current.x)**2)* .75 + ((e.clientY - origin.current.y)**2) * 10);
         let deg = distance / (rotateRefInfo.current.width/2) * 12;
     
         let rotY = (e.clientX - origin.current.x) / (rotateRefInfo.current.width/2);
@@ -53,14 +64,14 @@ const ProjectBox = ({boxInfo}) => {
     return (
         <div id='outer-parent' ref={rotateRefParent}
                 onClick={handleClick}
-                onMouseEnter={handleMouseEnter}
-                onMouseMove={handleMouseMove} 
-                onMouseLeave={handleMouseExit}
+                onMouseEnter={()=>toggleAnimation(true)}
+                //onMouseMove={handleMouseMove} 
+                onMouseLeave={handleLeave}
         >
-            <div className={`box-outer font-config ${font.className}`} ref={rotateRef}>
-                <div className='box-image' style={{transform: 'translateZ(-60px)', backgroundImage: `url(${boxInfo.thumbnail})`}}></div>
+            <div className={`box-outer font-config ${isAnimated ? 'box-animated' : ''} ${font.className}`} ref={rotateRef}>
+                <div className='box-image' style={{transform: 'translateZ(-1px)'/*, backgroundImage: `url(${boxInfo.thumbnail})`*/}}></div>
                 <div className='name-plate' 
-                     style={{backgroundColor: `${boxInfo.primary}`, transform: 'translateZ(10px)'}}
+                     style={{transform: 'translateZ(10px)'}}
                 >
                     <p style={{transform: 'translateZ(20px)'}}>{boxInfo.name}</p>
                 </div>

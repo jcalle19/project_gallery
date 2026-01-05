@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import Icon from './icon.jsx'
 import { Work_Sans } from 'next/font/google'
@@ -11,7 +13,7 @@ const font = Work_Sans({
 
 const TitleBar = () => {
   return (
-    <div id='title-container-parent' style={{backgroundColor: 'var(--mint-light)'}} className={`${font.className}`}>
+    <div id='title-container-parent' className={`${font.className}`}>
         <div id='title-container'>
             <div className='letter'>
                 <Icon src={'/logo.svg'} width={'100%'} height={'100%'}/>
@@ -24,7 +26,6 @@ const TitleBar = () => {
             <div className='letter'>R</div>
             <div className='letter'>Y</div>
         </div>
-               
     </div>
   )
 }

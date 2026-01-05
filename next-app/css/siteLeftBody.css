@@ -1,0 +1,9 @@
+#left-body-container {
+    width: min(60vw, 75rem);
+    height: 100%;
+}
+
+#bar-container {
+    width: 100%;
+    height: 100%;
+}

@@ -26,6 +26,7 @@ const AddProjectWindow = () => {
     const [githubText, setGithub] = useState('');
     const [linkText, setLink] = useState('');
     const [descriptionText, setDescription] = useState('');
+    const [bulletText, setBullet] = useState('');
     const [techSet, updateTechList] = useState(new Set());
 
     useEffect(() => {
@@ -97,6 +98,55 @@ const AddProjectWindow = () => {
                 <label className='col-start-1'>Project Name: </label> 
                 <input className='col-start-2' type='text' value={nameText ?? ''} onChange={(e)=>setName(e.target.value)}/>
             </div>
+            <div className='grid grid-cols-[1fr_5fr] row-start-2'>
+                <label className='col-start-1'>Image: </label>
+                <input className='col-start-2' type='text' value={imageText ?? ''} onChange={(e)=>setImage(e.target.value)}/>
+            </div>
+            <div className='grid grid-cols-[1fr_5fr] row-start-3'>
+                <label className='col-start-1'>Github: </label> 
+                <input className='col-start-2' type='text' value={githubText ?? ''} onChange={(e)=>setGithub(e.target.value)}/>
+            </div>
+            <div className='grid grid-cols-[1fr_5fr] row-start-4'>
+                <label className='col-start-1'>Link: </label>
+                <input className='col-start-2' type='text' value={linkText ?? ''} onChange={(e)=>setLink(e.target.value)}/>
+            </div>
+            <div className='grid grid-cols-[1fr_4fr] row-start-5 row-span-3'>
+                <label className='col-start-1' id='description-label'>Description: </label>
+                <textarea className='col-start-2' id='description-area' name='description' rows='5' type='text' value={descriptionText ?? ''} onChange={(e)=>setDescription(e.target.value)}/>
+            </div>
+            <div className='grid grid-cols-[1fr_5fr] row-start-8'>
+                <label className='col-start-1'>Bullets:</label>
+                <input className='col-start-2' type='text' value={bulletText ?? ''} onChange={(e)=>setLink(e.target.value)}/>
+            </div>
+            <div id='tech-container' className='row-start-9 row-span-3'>
+                {Array.from(techIcons).map((entry, index)=>{
+                    return <div className={`tech-icon ${techSet.has(entry[0]) ? 'selected' : ''}`} 
+                                key={index} style={{height: '40%', aspectRatio: '1 / 1'}}
+                                onClick={(e)=>handleIconClick(entry[0])}
+                            >
+                        <TechStackIcon label={entry[0]} src={entry[1]} sizePercent={'90'}/>
+                    </div>
+                })}
+            </div>
+            <div className='button-container grid grid-cols-3 row-span-2'>
+                <div className='button col-start-1' style={{backgroundColor: 'var(--mint)'}} onClick={handleAdd}>Confirm</div>
+                <div className='button col-start-2' style={{backgroundColor: 'var(--slate-light)'}} onClick={handlePreview}>Preview</div>
+                <div className='button col-start-3' style={{backgroundColor: 'red'}} onClick={handleRemove}>Remove</div>
+            </div>
+        </div>
+    )
+}
+
+export default AddProjectWindow;
+
+/*<div id='project-window-container' className={`grid grid-rows-14 gap-2 ${font.className}`} style={{
+            display: `${projectWindowOpen ? '' : 'none'}`,
+            backgroundColor: 'var(--charcoal)',
+        }}>
+            <div className='grid grid-cols-[1fr_3fr] row-start-1'>
+                <label className='col-start-1'>Project Name: </label> 
+                <input className='col-start-2' type='text' value={nameText ?? ''} onChange={(e)=>setName(e.target.value)}/>
+            </div>
             <div className='grid grid-cols-[1fr_3fr] row-start-2'>
                 <label className='col-start-1'>Primary Color: </label>
                 <input className='col-start-2' type='text' value={colorText ?? ''} onChange={(e)=>setColor(e.target.value)}/>
@@ -136,8 +186,4 @@ const AddProjectWindow = () => {
                 <div className='button col-start-2' style={{backgroundColor: 'var(--slate-light)'}} onClick={handlePreview}>Preview</div>
                 <div className='button col-start-3' style={{backgroundColor: 'red'}} onClick={handleRemove}>Remove</div>
             </div>
-        </div>
-    )
-}
-
-export default AddProjectWindow;
+        </div>*/

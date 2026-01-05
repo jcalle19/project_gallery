@@ -17,16 +17,15 @@ const ProjectBoxContainer = () => {
     }
 
     return (
-        <div id='project-box-container-parent' style={{backgroundColor: 'var(--charcoal)'}}>
-            <div id='project-box-container' style={{backgroundColor: 'var(--slate)', scrollbarColor: 'var(--slate-light) transparent'}}>
+        <div id='project-box-container'>
+            <div id='project-flex-box'>
                 {
                     [...projectList.values()].map((box, index)=>{ 
                         return (checkFilter(box) ? <ProjectBox key={index} boxInfo={box}/> : '');
-                    })
+                   })
                 }
             </div>
         </div>
-        
     )
 }
 

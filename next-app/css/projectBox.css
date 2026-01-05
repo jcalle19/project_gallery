@@ -1,56 +1,78 @@
+/*Unused
 #project-box-container-parent {
     position: relative;
     width: 48%;
-    height: 96%;
-    left: 12%;
-    top: 2%;
+    height: 98%;
+    left: 9.25%;
+    top: 1%;
     border-right: 5px solid black;
-    border-radius: 15px;
+    border-radius: 5px;
+    background-color: var(--charcoal);
+    border: 1px solid var(--charcoal); The border-radius only works if this is here for some reason
     margin-left: 5px;
-}
+}*/
 
 #project-box-container {
+    position: relative;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    max-height: 100vh;
+    border-radius: 5px;
+    background-color: var(--charcoal);
+    scrollbar-color: var(--slate-light) transparent;
+    overflow-x: visible;
+    overflow-y: auto;
+    z-index: 1;
+}
+
+#project-flex-box {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     position: absolute;
     justify-content: center;
-    top: 50%;
+    top: 0%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    padding-top: 25px;
-    padding-bottom: 25px;
-    gap: 35px;
-    width: 95%;
-    height: 95%;
-    overflow-x: visible;
-    overflow-y: scroll;
-    border-radius: 15px;
-    box-shadow: 0px 0px 10px black;
+    transform: translateX(-50%);
+    padding: 25px;
+    gap: 1rem;
+    width: 100%;
+    height: fit-content;
 }
 
 #outer-parent {
     perspective: 10000px;
     perspective-origin: center;
-    width: fit-content;
-    height: fit-content;
+    width: 100%;
 }
 
 .box-outer {
     position: relative;
-    height: 18vh;
-    min-height: 125px;
-    max-width: 35vw;
-    aspect-ratio: 2 / 1;
-    background-color: transparent;
-    border-radius: 15px;
+    width: 100%;
+    height: 3rem;
+    min-height: 100px;
+    border-radius: 1px;
+    background: black;
     box-shadow: 0px 0px 10px black;
-    transition: transform .1s, box-shadow .2s;
+    transition: transform .1s, box-shadow .1s, letter-spacing .2s, font-weight .2s;
 }
 
 .box-outer:hover {
-    box-shadow: 0px 0px 15px white;
+    box-shadow: 0px 0px 10px white;
+    letter-spacing: 4px;
+    font-weight: 500;
 }
+
+.box-animated {
+    background: linear-gradient(90deg, var(--forest) 0%, var(--pastel-blue) 100%);
+    background-size: 400% 400%;
+    animation: box-inspect 8s infinite ease-in-out;
+    box-shadow: 0px 0px 10px white !important;
+    letter-spacing: 4px !important;
+    font-weight: 500 !important;
+}
+
 .box-outer, .box-outer * {
     transform-style: preserve-3d;
 }
@@ -60,22 +82,25 @@
     height: 100%;
     background-size: cover;
     background-position: center;
-    border-radius: 15px;
+    border-radius: 2px;
 }
 
 .font-config {
-    font-size: 17px;
-    font-weight: 350;
-    letter-spacing: -1px;
+    font-size: min(2.5rem, 2.25vmax);
+    font-weight: 100;
+    letter-spacing: 2px;
 }
 
 .name-plate {
-    position: absolute;;
-    top: 5px;
-    left: 5px;
-    border-radius: 10px 0px 10px 0px;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    height: 100%;
+    max-width: 90%;
+    border-radius: 2px 0px 10px 0px;
     padding-left: 2%;
     padding-right: 2%;
+    color: white;
 }
 
 .link-bar {
@@ -89,4 +114,19 @@
 
 .link-expanded {
     width: 10%;
+}
+
+@keyframes box-inspect {
+    /* Start position */
+    0% {
+        background-position: 0% 50%;
+    }
+    /* Move to the end position halfway through the animation */
+    50% {
+        background-position: 100% 50%;
+    }
+    /* Return to the start position for a seamless loop */
+    100% {
+        background-position: 0% 50%;
+    }
 }

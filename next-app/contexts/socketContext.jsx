@@ -17,7 +17,7 @@ export const SocketProvider = ({children}) => {
     const [socketReady, setSocketReady] = useState(false);
 
     useEffect(() => {
-        socketRef.current = io(process.env.NEXT_PUBLIC_PROD_SOCKET_URL);
+        socketRef.current = io(process.env.NEXT_PUBLIC_DEV_SOCKET_URL);
 
         socketRef.current.on('connected', (isConnected) => {
            setSocketReady(isConnected);

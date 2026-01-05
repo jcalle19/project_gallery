@@ -19,7 +19,7 @@ const DefaultProjectDisplay = () => {
     }
 
     return (
-        <div id='default-display' className={`display-container text ${defaultPanelOpen ? '' : 'translated'}`} style={{backgroundColor: 'var(--charcoal)'}}>
+        <div id='default-display' className={`display-container text ${defaultPanelOpen ? '' : 'translated'}`} style={{backgroundColor: 'black'}}>
             <div id='default-title'>{defaultProjectPanel?.title}</div>
             <div id='entry-msg' className='section'>
                 <div className='section-title'>Welcome!</div>

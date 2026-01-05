@@ -1,14 +1,12 @@
 #title-container-parent {
-    position: absolute;
-    left: 0%;
-    width: 4%; 
+    width: 100%; 
     height: 100%; 
+    background-color: var(--foreground);
+    border-right: 1px solid var(--slate-light);
 }
 
 #title-container {
-    position: absolute;
-    top: 0%;
-    left: 0%;
+    padding-top: 10%;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -20,7 +18,8 @@
     position: relative;
     width: 100%;
     height: 6%;
-    font-size: 3vmax;
+    font-size: min(3vmax, 4rem);
     font-weight: 600;
     text-align: center;
+    color: var(--mint-light);
 }

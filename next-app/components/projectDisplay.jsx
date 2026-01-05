@@ -14,7 +14,7 @@ const font = Work_Sans({
     });
 
 const ProjectDisplay = () => {
-    const { currProject,  techIcons } = useStateContext();
+    const { currProject, setCurrProject, techIcons } = useStateContext();
     const { toggleDefaultPanel, setInfoText, toggleIconInfo } = useUIContext();
     
     const setIconInfo = (toggle, label) => {
@@ -24,10 +24,11 @@ const ProjectDisplay = () => {
 
     const handleClose = () => {
         toggleDefaultPanel(true);
+        setCurrProject(null);
     }
 
     return (
-        <div className={`display-container ${font.className}`} style={{backgroundColor: 'var(--charcoal)'}}>
+        <div className={`display-container ${font.className}`} style={{backgroundColor: 'black'}}>
             { currProject === null ? '' :
                 <div>
                     <div id='close-button' className='col-start-2' onClick={handleClose}>
@@ -36,7 +37,7 @@ const ProjectDisplay = () => {
                     <div id='project-title' className='text col-start-1'>{currProject.name}</div>
                     <div id='project-image' style={{backgroundImage:`url(${currProject.image})`, marginBottom: '2%'}}></div>
                     <div id='techstack-parent' className='section' 
-                        style={{ backgroundColor: 'var(--slate)'}}>
+                        style={{ backgroundColor: 'var(--charcoal)'}}>
                         <div className='section-title text'>Used Technologies</div>
                         <div id='techstack-list'>
                             {
@@ -48,11 +49,11 @@ const ProjectDisplay = () => {
                             }
                         </div>
                     </div>
-                    <div id='description' className='section' style={{backgroundColor: 'var(--slate)'}}>
+                    <div id='description' className='section' style={{backgroundColor: 'var(--charcoal)'}}>
                         <div className='section-title text'>Project Description</div>
                         <div id='description-body' className='text'>{currProject.desc}</div>
                     </div>
-                     <div id='Links' className='section grid grid-rows-2' style={{backgroundColor: 'var(--slate)'}}>
+                     <div id='Links' className='section grid grid-rows-2' style={{backgroundColor: 'var(--charcoal)'}}>
                         <div className='section-title text row-start-1'>Links</div>
                         <div className='row-start-2 grid grid-cols-2' style={{marginLeft: '-4.5%'}}>
                             <div id='github' className='link-icon col-start-1'
